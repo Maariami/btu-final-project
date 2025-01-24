@@ -3,13 +3,16 @@ let allProducts = [];
 fetch("https://fakestoreapi.com/products")
   .then((response) => response.json())
   .then((products) => {
-    allProducts = products.slice(0, 8);
-    displayProducts(allProducts);
+    allProducts = products;
+    const firstGroup = products.slice(0, 8);
+    const secondGroup = products.slice(8, 16);
+    displayProducts(firstGroup, "products-container");
+    displayProducts(secondGroup, "products-container1");
   })
   .catch((error) => console.error("Error fetching products:", error));
 
-function displayProducts(products) {
-  const container = document.getElementById("products-container");
+function displayProducts(products, containerId) {
+  const container = document.getElementById(containerId);
   container.innerHTML = "";
   products.forEach((product) => {
     const productDiv = document.createElement("div");
@@ -19,8 +22,6 @@ function displayProducts(products) {
             <h2>${product.title}</h2>
             <p><strong>Rating:</strong> ${product.rating.rate}/5</p>
             <p class="price">$${product.price}</p>
-            
-            
         `;
     container.appendChild(productDiv);
   });
@@ -31,5 +32,9 @@ document.getElementById("search-box").addEventListener("input", function () {
   const filteredProducts = allProducts.filter((product) =>
     product.title.toLowerCase().includes(query)
   );
-  displayProducts(filteredProducts);
+  // Update both containers with the filtered products
+  const firstGroup = filteredProducts.slice(0, 8);
+  const secondGroup = filteredProducts.slice(8, 16);
+  displayProducts(firstGroup, "products-container");
+  displayProducts(secondGroup, "products-container1");
 });

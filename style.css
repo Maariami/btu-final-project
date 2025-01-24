@@ -354,11 +354,15 @@ header h2 {
 }
 /* BODY END */
 /* PRODUCTS START */
-#products-container {
+#products-container,
+#products-container1 {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
   justify-content: center;
+}
+#products-container1 {
+  display: none;
 }
 .product {
   max-width: 296px;
@@ -378,7 +382,7 @@ header h2 {
 }
 .product h2 {
   white-space: nowrap;
-  width: 280px;
+  width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   margin-top: 16px;
@@ -401,14 +405,17 @@ header h2 {
   line-height: 32.4px;
   color: rgba(0, 0, 0, 1);
 }
+.mobile {
+  display: none;
+}
 @media only screen and (max-width: 1240px) {
   .centered {
     width: 100%;
     max-width: 100%;
   }
-  #products-container {
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
+  #products-container,
+  #products-container1 {
+    display: flex;
     justify-content: start;
     gap: 16px;
     overflow-x: auto;
@@ -416,6 +423,40 @@ header h2 {
   }
   .product:first-of-type {
     margin-left: 16px;
+  }
+  .product {
+    max-width: 198px;
+    height: auto;
+  }
+  .mobile {
+    display: flex;
+    justify-content: center;
+  }
+  .hidden-button {
+    align-items: center;
+    justify-content: center;
+    margin-inline: 16px;
+    width: auto;
+    height: 46px;
+    gap: 12px;
+    border-radius: 62px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    font-family: Satoshi;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 18.9px;
+  }
+
+  .big-line {
+    width: auto;
+    margin-top: 40px;
+    margin-inline: 16px;
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+  .product img {
+    height: 200px;
+    width: 198px;
   }
 }
 /* PRODUCTS END */
@@ -460,6 +501,7 @@ header h2 {
 @media only screen and (max-width: 1240px) {
   .browse {
     margin-inline: 16px;
+    margin-top: 50px;
   }
   .browse p {
     padding-top: 40px;
@@ -623,8 +665,8 @@ header h2 {
 @media only screen and (max-width: 1240px) {
   .update {
     position: absolute;
-    width: auto;
     align-items: center;
+    width: calc(100% - 32px);
     margin-inline: 16px;
     gap: 32px;
     left: 0;
@@ -734,6 +776,10 @@ footer {
 }
 @media only screen and (max-width: 1240px) {
   footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     padding-inline: 16px;
   }
   .lists {
