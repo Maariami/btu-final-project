@@ -610,8 +610,10 @@ header h2 {
 /* CUSTOMERS END */
 /* UPDATE SGTART */
 .update {
-  position: relative;
+  position: absolute;
   top: -90px;
+  left: 50%;
+  transform: translate(-50%);
   background-color: black;
   min-height: 180px;
   display: flex;
@@ -670,6 +672,7 @@ header h2 {
     margin-inline: 16px;
     gap: 32px;
     left: 0;
+    transform: none;
     top: -135px;
     display: flex;
     flex-direction: column;
